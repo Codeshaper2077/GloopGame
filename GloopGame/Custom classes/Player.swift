@@ -27,6 +27,7 @@ class Player: SKSpriteNode {
         // set other prop after init
         self.name = "player"
         self.setScale(1.0)
+        self.zPosition = Layer.player.rawValue
         self.anchorPoint = CGPoint(x: 0.5, y: 0.0)
     }
     
