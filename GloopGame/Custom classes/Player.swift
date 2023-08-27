@@ -35,11 +35,24 @@ class Player: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // constraints
+    func setupConstraints(floor: CGFloat) {
+        let range = SKRange(lowerLimit: floor, upperLimit: floor)
+        let lockToPlatform = SKConstraint.positionY(range)
+        constraints = [lockToPlatform]
+    }
+    
     // anim ext
     func walk() {
         // test texture
-        guard let walkTextures = walkTextures else { preconditionFailure("Текстуры не найдены") }
+        guard let walkTextures = walkTextures else { preconditionFailure("textures not found") }
         // launch anim
         startAnimation(textures: walkTextures, speed: 0.25, resize: true, restore: true, name: PlayerAnimationType.walk.rawValue, count: 0)
+    }
+    
+    // player moving
+    func moveToPosition(pos: CGPoint, speed: TimeInterval) {
+        let moveAction = SKAction.move(to: pos, duration: speed)
+        run(moveAction)
     }
 }
