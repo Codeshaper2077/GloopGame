@@ -51,7 +51,13 @@ class Player: SKSpriteNode {
     }
     
     // player moving
-    func moveToPosition(pos: CGPoint, speed: TimeInterval) {
+    func moveToPosition(pos: CGPoint, speed: TimeInterval, direction: String) {
+        
+        switch direction {
+        case "L": xScale = -abs(xScale)
+        default:
+            xScale = abs(xScale)
+        }
         let moveAction = SKAction.move(to: pos, duration: speed)
         run(moveAction)
     }
